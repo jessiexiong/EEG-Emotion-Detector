@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FlaskApp</title>
+</head>
+<body>
+    <h1>EEG Reliable Brain Decoder</h1>
+
+    <form action="{{ url_for('predict')}}" method="post">
+        <p>What is the path of the file you are trying to predict</p>
+         <input type="text" name="filepath" placeholder="Enter file path" 			  		required="required" /><br>
+         <button type="submit">Predict</button>
+    </form>
+    <p> {{ prediction }} </p>
+</body>
+</html>
+

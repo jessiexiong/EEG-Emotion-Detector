@@ -17,8 +17,11 @@ def predict():
     # features = [np.array(int_features)]
     # prediction = model.predict(features)
     # result = prediction[0]
-
-    result = "BING BONG you are excited 🥺"
+    string = request.form['filepath']
+    if string=="f":
+        result = "BING BONG you are excited 🥺"
+    else:
+        result = "BING BONG you are sad 😩"
     return render_template('index.html', prediction=result)
 
 if __name__ == "__main__":

@@ -7,6 +7,7 @@
     <script type="text/javascript" src="{{ url_for('static',filename='script/script.js') }}"></script>
 </head>
 <body>
+    <div class="floating-box">
     <h1 class = "center">EEG Reliable Brain Decoder 🧠</h1>
     <form action="{{ url_for('predict')}}" method="post">
         <p class = "left">What is the path of the data you are trying to predict?</p>
@@ -28,6 +29,7 @@
     </form>
 
     <p class="center"> {{ prediction }} </p>
+        </div>
 </body>
 </html>
 

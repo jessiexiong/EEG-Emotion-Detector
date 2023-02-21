@@ -19,7 +19,7 @@ def predict():
     # result = prediction[0]
 
     result = "BING BONG you are excited 🥺"
-    return render_template('index.html', prediction=result, button_heading="bb")
+    return render_template('index.html', prediction=result)
 
 if __name__ == "__main__":
     app.run(debug=True)

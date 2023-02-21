@@ -18,8 +18,8 @@ def predict():
     # prediction = model.predict(features)
     # result = prediction[0]
 
-    result = "test"
-    return render_template('index.html', prediction=result)
+    result = "BING BONG you are excited 🥺"
+    return render_template('index.html', prediction=result, button_heading="bb")
 
 if __name__ == "__main__":
     app.run(debug=True)

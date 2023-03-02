@@ -21,7 +21,7 @@ def predict():
     if string=="f":
         result = "BING BONG you are excited 🥺"
     else:
-        result = "BING BONG you are sad 😩"
+        result = "BING BONG you are neutral 😩"
     return render_template('index.html', prediction=result)
 
 if __name__ == "__main__":

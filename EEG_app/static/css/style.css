@@ -134,4 +134,16 @@ path.two {
   padding: 20px;
   width: 80%;
   padding: 10px;
+  margin-bottom: 20px;
 }
+
+
+div#loading {
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    display: none;
+    background: url(/static/a.gif) no-repeat;
+    cursor: wait;
+    }

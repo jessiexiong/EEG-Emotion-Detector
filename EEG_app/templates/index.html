@@ -28,7 +28,17 @@
         </div>
     </form>
 
-    <p class="center"> {{ prediction }} </p>
+    {% if chart_url %}
+        <div style="  margin: auto;
+          width: 80%;
+          padding: 10px;
+          display: flex;
+         justify-content: center;">
+        <img src="data:image/png;base64,{{ chart_url }}" />
+        </div>
+    {% endif %}
+
+<!--        <p class="center"> {{ prediction }} </p>-->
         </div>
 </body>
 </html>

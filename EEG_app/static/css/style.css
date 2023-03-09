@@ -15,6 +15,14 @@ h1{
  justify-content: center;
 }
 
+.filepath {
+  margin: auto;
+  width: 80%;
+  padding-bottom: 20px;
+  display: flex;
+ justify-content: center;
+}
+
 .left{
 
   margin-left: 80px;
@@ -37,7 +45,7 @@ font-family: 'Inter', sans-serif;}
 .wrapper {
   margin-top: 20px;
   display: flex;
- justify-content: center;
+  justify-content: center;
 }
 
 .cta {
@@ -126,14 +134,13 @@ path.two {
 
 .floating-box {
   margin: auto;
-  width: 80%;
+  width: 99%;
   background-color: #ffffff;
   border: 0px solid #92ad9b;
   border-radius: 10px;
   box-shadow: 2px 2px 6px rgba(146, 173, 155, 1);
-  padding: 20px;
-  width: 80%;
   padding: 10px;
+  padding-bottom: 40px;
   margin-bottom: 20px;
 }
 
@@ -147,3 +154,24 @@ div#loading {
     background: url(/static/a.gif) no-repeat;
     cursor: wait;
     }
+
+
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.columnleft {
+  width: 50%;
+}
+
+.columnright {
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

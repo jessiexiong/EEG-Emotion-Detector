@@ -16,6 +16,7 @@ Clone the repo
 Once installed, set up python modules for environment with:
 
 `pip install -r requirements.txt`
+Note: Tensorflow installation may need additional workaround
 
 ## Usage
 

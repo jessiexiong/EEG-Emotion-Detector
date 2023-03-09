@@ -67,7 +67,7 @@ def predict2():
 
 def model_predict_to_pie(x_test):
     """Run model.predict on data and convert data to pie chart"""
-    reconstructed_model = keras.models.load_model("../ML model/modelbci_0225")
+    reconstructed_model = keras.models.load_model("modelbci_0225")
 
     x_pred = np.array(list(map(lambda x: np.argmax(x), reconstructed_model.predict(x_test))))
 
@@ -96,4 +96,4 @@ def model_predict_to_pie(x_test):
     return chart_url
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)

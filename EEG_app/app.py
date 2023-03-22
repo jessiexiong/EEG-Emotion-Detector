@@ -26,9 +26,10 @@ def home():
 def predict():
     try:
         filepath = request.form.get("filepath")
-        if filepath == "f":
+        if filepath == "concentrated":
             # relaxed
-            filepath = '/Users/jessiexiong/Desktop/test_G/test-3.csv'
+            filepath = 'C:/Users/menon/Documents/OpenBCI_GUI/Recordings/OpenBCISession_2023-02-10_15-32-47/' \
+                       'BrainFlow-RAW_2023-02-10_15-32-47_1_sue_concentrated_ilc319_emojigame'
         data=pd.read_csv(filepath)
         x_test = data.drop('Label', axis=1).copy()
 
@@ -45,7 +46,9 @@ def predict():
 def predict2():
     #
     try:
-        list_of_files = glob.glob('/Users/jessiexiong/Documents/OpenBCI_GUI/Recordings/*/*.csv')  # * means all if need specific format then *.csv
+        list_of_files = glob.glob(
+            'C:/Users/menon/Documents/OpenBCI_GUI/Recordings/*/*.csv')  # * means all if need specific format then *.csv
+
         latest_file = max(list_of_files, key=os.path.getctime)
         print(latest_file)
 
@@ -67,9 +70,15 @@ def predict2():
 
 def model_predict_to_pie(X_pred):
     """Run model.predict on data and convert data to pie chart"""
-    reconstructed_model = keras.models.load_model("../ML model/Run_4/modelbci_demo3")
+    json_file = open("C:/Users/menon/Documents/EEG-Emotion-Detector/ML model/Run_4/modelbci_demo3.json")
+    loaded_json_file = json_file.read()
+    json_file.close()
+    loaded_model = keras.models.model_from_json(loaded_json_file)
 
-    x_pred = np.round(reconstructed_model.predict(X_pred))
+    loaded_model.load_weights("C:/Users/menon/Documents/EEG-Emotion-Detector/ML model/Run_4/modelbci_demo3.h5")
+
+    f= loaded_model.predict(X_pred)
+    x_pred = np.round(f)
 
     fig = Figure()
     ax = fig.add_axes([0, 0, 1, 1])

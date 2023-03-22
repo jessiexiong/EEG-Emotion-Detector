@@ -27,7 +27,8 @@ def predict():
     try:
         filepath = request.form.get("filepath")
         if filepath == "f":
-            filepath = '/Users/jessiexiong/Desktop/test/preprocessed-5.csv'
+            # relaxed
+            filepath = '/Users/jessiexiong/Desktop/test_G/test-3.csv'
         data=pd.read_csv(filepath)
         x_test = data.drop('Label', axis=1).copy()
 
@@ -55,9 +56,8 @@ def predict2():
         df = df.iloc[:, 0:5]
 
         data = gen_training_matrix(df)
-        x_test = np.delete(data, -1, axis=1).copy()
 
-        chart_url = model_predict_to_pie(x_test)
+        chart_url = model_predict_to_pie(data)
         return render_template('index.html', chart_url=chart_url)
 
     except Exception as err:
@@ -65,27 +65,18 @@ def predict2():
         return render_template('index.html', error=warning)
 
 
-def model_predict_to_pie(x_test):
+def model_predict_to_pie(X_pred):
     """Run model.predict on data and convert data to pie chart"""
-    reconstructed_model = keras.models.load_model("../ML model/modelbci_0225")
+    reconstructed_model = keras.models.load_model("../ML model/Run_4/modelbci_demo3")
 
-    x_pred = np.array(list(map(lambda x: np.argmax(x), reconstructed_model.predict(x_test))))
+    x_pred = np.round(reconstructed_model.predict(X_pred))
 
-    # convert data to pie chart
-    counter = collections.Counter(x_pred)
     fig = Figure()
     ax = fig.add_axes([0, 0, 1, 1])
     ax.axis('equal')
     # get the data for the pie chart
-    labels, data, colors = [], [], [0,0]
-    for item in counter.most_common():
-        if item[0] == 2:
-            labels.append("Concentrated")
-            colors[0]='#B1D4E0'
-        elif item[0] == 0:
-            labels.append("Relaxed")
-            colors[1]='#4FA64F'
-        data.append(item[1])
+    labels, data, colors = ["Concentrated", "Relaxed"], [np.count_nonzero(x_pred == 1.0),
+                                                         np.count_nonzero(x_pred == 0.0)], ['#B1D4E0', '#4FA64F']
 
     ax.pie(data, labels=labels, colors=colors, autopct='%1.1f%%')
 
@@ -94,6 +85,7 @@ def model_predict_to_pie(x_test):
     img.seek(0)
     chart_url = base64.b64encode(img.getvalue()).decode()
     return chart_url
+
 
 if __name__ == "__main__":
     app.run(debug=False)
